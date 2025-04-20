@@ -1,0 +1,13 @@
+{
+  "totp": {
+    "aws_password": "${AWS_TOTP_PASSWORD}",
+    "aws_root_label": "aws-root"
+  },
+  "aws": {
+    "default_region": "us-west-2",
+    "mfa_serial": "arn:aws:iam::434968058352:mfa/cli-ray"
+  },
+  "argocd": {
+    "namespace": "argocd"
+  }
+}
