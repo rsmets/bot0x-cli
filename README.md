@@ -27,7 +27,7 @@ npm link
 
 ### Shell Alias Integration (Advanced)
 
-You can enable first-class shell aliases for all your `botox` commands—just like the GitHub CLI—using the built-in `alias` command. 
+You can enable first-class shell aliases for all your `botox` commands — just like the original [github-copilot-cli][copilot-cli], which this project drew [inspiration][builder-blog] from — using the built-in `alias` command. 
 
 **To make aliases available in every shell session, add this line to your `.zshrc`, `.bashrc`, or similar shell profile:**
 
@@ -44,7 +44,7 @@ This will let you run `kbp 3000` or `gitclean` directly in your shell, as if the
   - Feels like a suite of first-class tools
 - **How does it work?**
   - The built-in `alias` command emits shell functions for each subcommand, which forward to `botox`.
-  - Inspired by the GitHub CLI's alias system ([see this blog post](https://www.builder.io/blog/github-copilot-cli-first-look)).
+  - Inspired by the GitHub CLI's alias system ([see this blog post][builder-blog]).
 
 > **Note:** This is optional. You can always use `botox <command>` as normal.
 
@@ -85,3 +85,8 @@ This symlinks your project as a global CLI, so you can run `botox` and all its s
 ## License
 
 MIT
+
+<!-- Reference-style links -->
+
+[copilot-cli]: https://github.com/orgs/community/discussions/86354
+[builder-blog]: https://www.builder.io/blog/github-copilot-cli-first-look
