@@ -1,0 +1,21 @@
+{
+  "name": "my-cli-tool",
+  "version": "1.0.0",
+  "description": "A Node.js CLI tool with multiple utilities",
+  "bin": {
+    "botox": "bin/index.js"
+  },
+  "main": "bin/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bin/index.js"
+  },
+  "keywords": ["cli", "commander", "shelljs", "utility"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "shelljs": "^0.8.5"
+  }
+}
