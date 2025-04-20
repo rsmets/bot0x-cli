@@ -1,7 +1,7 @@
 {
-  "name": "my-cli-tool",
+  "name": "botox",
   "version": "1.0.0",
-  "description": "A Node.js CLI tool with multiple utilities",
+  "description": "A CLI tool with handy utilities for \"experienced\" developers and sysadmins - so you don't even have to move a muscle 😉.",
   "bin": {
     "botox": "bin/index.js"
   },

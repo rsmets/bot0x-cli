@@ -17,7 +17,7 @@ const pkg = require('../package.json');
 const program = new Command();
 program
   .name('botox')
-  .description('A multi-tool CLI for system utilities')
+  .description('A CLI tool with handy utilities for "experienced" developers and sysadmins - so you don\'t even have to move a muscle 😉.')
   .version(pkg.version, '-v, --version', 'output the current version')
   .showHelpAfterError();
 
