@@ -1,61 +1,42 @@
 #!/usr/bin/env node
+/**
+ * Botox CLI entrypoint.
+ * Dynamically loads all command modules from lib/commands for modular scalability.
+ * Uses Commander for CLI parsing and help/version handling.
+ */
 import { Command } from 'commander';
 import chalk from 'chalk';
 import { createRequire } from 'module';
-import killbyport from '../lib/commands/killbyport.js';
-import gitclean from '../lib/commands/gitclean.js';
-import flushdns from '../lib/commands/flushdns.js';
+import { readdirSync } from 'fs';
+import { dirname, resolve } from 'path';
+import { fileURLToPath } from 'url';
 
 const require = createRequire(import.meta.url);
 const pkg = require('../package.json');
 
 const program = new Command();
-
 program
   .name('botox')
   .description('A multi-tool CLI for system utilities')
   .version(pkg.version, '-v, --version', 'output the current version')
   .showHelpAfterError();
 
-// killbyport / kbp
-program
-  .command('killbyport <port>')
-  .alias('kbp')
-  .description('Kill process running on a specific port')
-  .action(async (port) => {
-    try {
-      await killbyport(port);
-    } catch (err) {
-      console.error(chalk.red('Error:'), err.message);
-      process.exit(1);
-    }
-  });
+// Dynamically load and register all commands from lib/commands
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const commandsDir = resolve(__dirname, '../lib/commands');
 
-// gitclean
-program
-  .command('gitclean')
-  .description('Clean up merged git branches (except main/master)')
-  .action(async () => {
-    try {
-      await gitclean();
-    } catch (err) {
-      console.error(chalk.red('Error:'), err.message);
-      process.exit(1);
-    }
-  });
+for (const file of readdirSync(commandsDir)) {
+  if (!file.endsWith('.js')) continue;
+  // Import command module
+  const commandModule = await import(`${commandsDir}/${file}`);
+  if (commandModule.default && typeof commandModule.default === 'object' && typeof commandModule.default._name === 'string') {
+    // Register the command with Commander
+    program.addCommand(commandModule.default);
+  } else {
+    console.warn(chalk.yellow(`Warning: Command module ${file} does not export a valid Commander Command instance.`));
+  }
+}
 
-// flushdns
-program
-  .command('flushdns')
-  .description('Flush DNS cache')
-  .action(async () => {
-    try {
-      await flushdns();
-    } catch (err) {
-      console.error(chalk.red('Error:'), err.message);
-      process.exit(1);
-    }
-  });
-
-// Parse args
+// Parse CLI args
 program.parseAsync(process.argv);
