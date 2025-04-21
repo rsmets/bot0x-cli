@@ -2,7 +2,7 @@
 .botox.config.json
 bot0x.config.json
 # Ignore user home secrets (for reference, not effective here)
-~/.botox/config.json
+~/.bot0x/config.json
 
 # Node.js dependencies
 node_modules/
