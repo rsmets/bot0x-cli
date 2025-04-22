@@ -1,8 +1,9 @@
 {
-  "name": "botox-cli",
+  "name": "bot0x",
   "version": "1.0.0",
   "description": "A CLI tool with handy utilities for \"experienced\" developers and sysadmins - so you don't even have to move a muscle 😉.",
   "bin": {
+    "bot0x": "bin/index.js",
     "botox": "bin/index.js"
   },
   "main": "bin/index.js",

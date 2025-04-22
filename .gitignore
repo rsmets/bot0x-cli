@@ -1,0 +1,50 @@
+# Ignore user secrets and config
+.botox.config.json
+bot0x.config.json
+# Ignore user home secrets (for reference, not effective here)
+~/.bot0x/config.json
+
+# Node.js dependencies
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory
+coverage/
+
+# nyc test coverage
+.nyc_output/
+
+# Build output
+/dist/
+/build/
+
+# Optional npm cache directory
+.npm/
+
+# dotenv environment variables
+.env
+.env.*
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+.DS_Store
+Thumbs.db
+
+# OS generated files
+Icon?
