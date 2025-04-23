@@ -20,7 +20,7 @@ bot0x flushdns
 ## Installation
 
 ```sh
-npm install -g .
+npm install -g bot0x
 # or for local development
 npm link
 ```
