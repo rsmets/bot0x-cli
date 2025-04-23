@@ -38,5 +38,17 @@ for (const file of readdirSync(commandsDir)) {
   }
 }
 
+// Import welcome command directly to use for default action
+const welcomeModule = await import(`${commandsDir}/welcome.js`);
+
+// Add a default action when no command is specified
+program.action(async () => {
+  // Only show welcome message if no arguments were provided
+  if (process.argv.length <= 2) {
+    welcomeModule.default.action();
+    console.log(chalk.cyan('\nRun with --help to see all available commands\n'));
+  }
+});
+
 // Parse CLI args
 program.parseAsync(process.argv);
