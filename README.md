@@ -38,13 +38,35 @@ eval "$(bot0x alias -- "$0")"
 
 This will let you run `kbp 3000` or `gitclean` directly in your shell, as if they were standalone commands, while still using the single `bot0x` binary under the hood.
 
-### AWS Environment Commands (Shell Integration)
+### Shell Integration (Important Order!)
 
-For commands that need to modify your shell environment (like AWS profile switching), you'll need to source the included `bot0x.sh` script:
+For the best experience, you should set up your shell integration in the following order:
+
+1. First, source the bot0x shell script for AWS environment commands:
 
 ```sh
-# Source this in your .zshrc or .bashrc to enable AWS environment commands
-source /path/to/bot0x.sh
+# Add this FIRST to your .zshrc or .bashrc to enable AWS environment commands
+source "$(bot0x shellScript)"
+```
+
+2. Then, set up the alias integration:
+
+```sh
+# Add this AFTER sourcing the bot0x.sh script
+eval "$(bot0x alias)"
+```
+
+This order is important to avoid conflicts between the shell functions.
+
+Alternatively, you can print the script content directly and save it wherever you want:
+
+```sh
+# Print the script content
+bot0x shellScript --print > ~/.bot0x.sh
+
+# Then in your .zshrc or .bashrc (in this order):
+source ~/.bot0x.sh
+eval "$(bot0x alias)"
 ```
 
 This script provides the following commands that modify your shell environment:
