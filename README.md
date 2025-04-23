@@ -38,6 +38,65 @@ eval "$(bot0x alias -- "$0")"
 
 This will let you run `kbp 3000` or `gitclean` directly in your shell, as if they were standalone commands, while still using the single `bot0x` binary under the hood.
 
+### Shell Integration
+
+Bot0x commands fall into two categories:
+
+1. **Shell Environment Commands**: Commands that need to modify your current shell environment (like AWS profile switching)
+2. **Regular Commands**: Commands that don't need to modify your shell environment (like `ccio`, `kbp`, etc.)
+
+#### Setup: Two-step approach
+
+Add both of these to your `.zshrc` or `.bashrc`:
+
+```sh
+# 1. Set up commands that modify your shell environment
+eval "$(bot0x shellScript --print)"
+
+# 2. Set up all other commands as shell aliases
+eval "$(bot0x alias)"
+```
+
+This creates:
+
+1. Shell functions for commands that modify your shell environment:
+   - `awssr <env>` - Switch AWS role and context (dev, staging, prod, etc.)
+   - `awsp <profile>` - Switch AWS profile
+   - `awsdr <role>` - Unset AWS credential environment variables
+   - `awsdrAll` - Run awsdr && awsrmfaa && kubectx for all environments
+   - `awsrmfaa <role>` - Assume AWS MFA role automatically
+   - `awsmfa <profile>` - Generate AWS MFA token
+
+2. Shell aliases for all other commands, including your new `ccio` command for opening CircleCI.
+
+> **Note**: The `alias` command automatically excludes commands that require `eval`, so there are no conflicts between the two.
+
+#### Alternative: Save to a file
+
+If you prefer, you can save the shell environment functions to a file:
+
+```sh
+# Save the shell functions to a file
+bot0x shellScript --print > ~/.bot0x-env.sh
+
+# Then in your .zshrc or .bashrc:
+source ~/.bot0x-env.sh
+eval "$(bot0x alias)"
+```
+
+#### Usage Examples
+
+```sh
+# Use shell functions for environment commands
+awssr dev
+awsp default-root
+
+# Use regular aliases for other commands
+ccio
+kbp 3000
+gitclean
+```
+
 - **Why?**
   - Faster workflows (type `kbp 8080` instead of `bot0x kbp 8080`)
   - Shell completion and history for subcommands
