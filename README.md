@@ -38,45 +38,48 @@ eval "$(bot0x alias -- "$0")"
 
 This will let you run `kbp 3000` or `gitclean` directly in your shell, as if they were standalone commands, while still using the single `bot0x` binary under the hood.
 
-### Shell Integration (Important Order!)
+### Shell Integration
 
-For the best experience, you should set up your shell integration in the following order:
+Bot0x commands fall into two categories:
 
-1. First, source the bot0x shell script for AWS environment commands:
+1. **Shell Environment Commands**: Commands that need to modify your current shell environment (like setting AWS environment variables)
+2. **Regular Commands**: Commands that don't need to modify your shell environment (like `ccio`, `kbp`, etc.)
 
-```sh
-# Add this FIRST to your .zshrc or .bashrc to enable AWS environment commands
-source "$(bot0x shellScript)"
-```
+#### Step 1: Set up Shell Environment Commands
 
-2. Then, set up the alias integration:
+Add this to your `.zshrc` or `.bashrc`:
 
 ```sh
-# Add this AFTER sourcing the bot0x.sh script
-eval "$(bot0x alias)"
+# Set up commands that modify your shell environment
+eval "$(bot0x shellScript --print)"
 ```
 
-This order is important to avoid conflicts between the shell functions.
-
-Alternatively, you can print the script content directly and save it wherever you want:
-
-```sh
-# Print the script content
-bot0x shellScript --print > ~/.bot0x.sh
-
-# Then in your .zshrc or .bashrc (in this order):
-source ~/.bot0x.sh
-eval "$(bot0x alias)"
-```
-
-This script provides the following commands that modify your shell environment:
+This creates shell functions for commands that need to modify your current shell environment:
 
 - `awssr <env>` - Switch AWS role and context (dev, staging, prod, etc.)
 - `awsp <profile>` - Switch AWS profile
-- `awsdr <role>` - Assume AWS direct role
-- `awsdrAll` - Assume all AWS direct roles
+- `awsdr <role>` - Unset AWS credential environment variables
+- `awsdrAll` - Run awsdr && awsrmfaa && kubectx for all environments
 - `awsrmfaa <role>` - Assume AWS MFA role automatically
-- `awsmfa <profile>` - Set AWS MFA credentials
+- `awsmfa <profile>` - Generate AWS MFA token
+
+Alternatively, you can save these functions to a file:
+
+```sh
+bot0x shellScript --print > ~/.bot0x-env.sh
+source ~/.bot0x-env.sh
+```
+
+#### Step 2: Set up Regular Commands
+
+For all other commands (like `ccio`, `kbp`, `gitclean`, etc.), add this to your `.zshrc` or `.bashrc`:
+
+```sh
+# Set up all other commands as shell aliases
+eval "$(bot0x alias)"
+```
+
+This creates shell aliases for all commands, including your new `ccio` command for opening CircleCI.
 
 - **Why?**
   - Faster workflows (type `kbp 8080` instead of `bot0x kbp 8080`)
