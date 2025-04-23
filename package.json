@@ -6,11 +6,12 @@
     "bot0x": "bin/index.js",
     "botox": "bin/index.js"
   },
-  "main": "bin/index.js",
-  "type": "module",
   "scripts": {
+    "postinstall": "node scripts/post-install.js",
     "start": "node bin/index.js"
   },
+  "main": "bin/index.js",
+  "type": "module",
   "keywords": ["cli", "commander", "shelljs", "utility"],
   "author": "",
   "license": "MIT",
