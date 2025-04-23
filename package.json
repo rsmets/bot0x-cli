@@ -4,11 +4,12 @@
   "description": "A CLI tool with handy utilities for \"experienced\" developers and sysadmins - so you don't even have to move a muscle 😉.",
   "bin": {
     "bot0x": "bin/index.js",
-    "botox": "bin/index.js"
+    "botox": "bin/index.js",
+    "bot0x-install": "bin/install.js"
   },
   "scripts": {
     "start": "node bin/index.js",
-    "preinstall": "node -e \"process.exit(0)\""
+    "postinstall": "node bin/install.cjs"
   },
   "main": "bin/index.js",
   "type": "module",
