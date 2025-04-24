@@ -1,6 +1,6 @@
 {
   "name": "bot0x",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "A CLI tool with handy utilities for \"experienced\" developers and sysadmins - so you don't even have to move a muscle 😉.",
   "bin": {
     "bot0x": "bin/index.js",
@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node bin/index.js",
-    "postinstall": "echo '' && node bin/install.cjs"
+    "postinstall": "node bin/index.js welcome"
   },
   "main": "bin/index.js",
   "type": "module",
