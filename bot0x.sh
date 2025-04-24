@@ -7,12 +7,6 @@
 # IMPORTANT: Source this BEFORE running eval "$(bot0x alias)" to avoid conflicts
 
 # --- Commands that modify shell environment variables (require eval) ---
-
-# AWS Profile and Role Switching
-__bot0x_awssr() {
-  eval "$(bot0x awsSwitchRole "$@")"
-}
-
 __bot0x_awsp() {
   eval "$(bot0x switchAwsProfile "$@")"
 }
@@ -50,7 +44,6 @@ __bot0x_awsr() {
 }
 
 # Create aliases to the functions
-alias awssr='__bot0x_awssr'
 alias awsp='__bot0x_awsp'
 alias awsdr='__bot0x_awsdr'
 alias awsrmfaa='__bot0x_awsrmfaa'
