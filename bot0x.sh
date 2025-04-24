@@ -21,10 +21,6 @@ __bot0x_awsdr() {
   eval "$(bot0x awsdr "$@")"
 }
 
-__bot0x_awsdrAll() {
-  eval "$(bot0x awsdrAll "$@")"
-}
-
 __bot0x_awsrmfaa() {
   eval "$(bot0x assumeAwsMfaRoleAutomatically "$@")"
 }
@@ -33,13 +29,22 @@ __bot0x_awsmfa() {
   eval "$(bot0x awsMfa "$@")"
 }
 
+# __bot0x_awsrda() {
+#   eval "$(bot0x awsdr && __bot0x_awsp default-root && __bot0x_awsrmfaa dev && kubectx eks/dev-account-saas-cluster)"
+# }
+
+__bot0x_awsrsta() {
+  eval "$(bot0x awsdr && __bot0x_awsp default-root && __bot0x_awsrmfaa staging && kubectx eks/staging-account-core-cluster)"
+}
+
 # Create aliases to the functions
 alias awssr='__bot0x_awssr'
 alias awsp='__bot0x_awsp'
 alias awsdr='__bot0x_awsdr'
-alias awsdrAll='__bot0x_awsdrAll'
 alias awsrmfaa='__bot0x_awsrmfaa'
 alias awsmfa='__bot0x_awsmfa'
+# alias awsdra='__bot0x_awsrda'
+alias awsrsta='__bot0x_awsrsta'
 
 # --- Documentation ---
 # This file contains only commands that need to modify the shell environment.
