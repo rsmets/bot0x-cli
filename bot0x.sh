@@ -1,3 +1,4 @@
+#!/bin/sh
 # bot0x.sh: Shell plugin for seamless bot0x CLI integration
 # Source this file in your ~/.zshrc or ~/.bashrc for seamless AWS environment variable updates
 #
