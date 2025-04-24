@@ -77,7 +77,7 @@ eval "$(bot0x alias)"
 
 ```sh
 # Use shell functions for environment commands
-awssr dev
+awsrda
 awsp default-root
 
 # Use regular aliases for other commands
