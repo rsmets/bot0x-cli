@@ -29,20 +29,13 @@ __bot0x_awsmfa() {
   eval "$(bot0x awsMfa "$@")"
 }
 
-# __bot0x_awsrda() {
-#   # Execute commands one by one
-#   __bot0x_awsdr
-#   __bot0x_awsp default-root
-#   __bot0x_awsrmfaa dev
-#   /usr/local/bin/kubectx eks/dev-account-saas-cluster
-# }
-
-__bot0x_awsrsta() {
+# Function to handle swapping AWS role and kubectx
+__bot0x_awsr() {
   # Execute commands one by one
   __bot0x_awsdr
   __bot0x_awsp default-root
-  __bot0x_awsrmfaa staging
-  /usr/local/bin/kubectx eks/staging-account-core-cluster
+  __bot0x_awsrmfaa $1 # env, eg 'prod'
+  /usr/local/bin/kubectx $2 # kubectx, eg 'eks/production-account-core-cluster'
 }
 
 # Create aliases to the functions
@@ -51,8 +44,11 @@ alias awsp='__bot0x_awsp'
 alias awsdr='__bot0x_awsdr'
 alias awsrmfaa='__bot0x_awsrmfaa'
 alias awsmfa='__bot0x_awsmfa'
-# alias awsdra='__bot0x_awsrda'
-alias awsrsta='__bot0x_awsrsta'
+alias awsr='__bot0x_awsr'
+alias awsdra='__bot0x_awsr dev eks/dev-account-saas-cluster'
+alias awsrsta='__bot0x_awsr staging eks/staging-account-core-cluster'
+alias awsrsba='__bot0x_awsr sandbox eks/sandbox-account-saas-cluster'
+alias awsrpa='__bot0x_awsr prod eks/production-account-core-cluster'
 
 # --- Documentation ---
 # This file contains only commands that need to modify the shell environment.
