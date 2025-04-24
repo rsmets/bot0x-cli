@@ -30,11 +30,19 @@ __bot0x_awsmfa() {
 }
 
 # __bot0x_awsrda() {
-#   eval "$(bot0x awsdr && __bot0x_awsp default-root && __bot0x_awsrmfaa dev && kubectx eks/dev-account-saas-cluster)"
+#   # Execute commands one by one
+#   __bot0x_awsdr
+#   __bot0x_awsp default-root
+#   __bot0x_awsrmfaa dev
+#   /usr/local/bin/kubectx eks/dev-account-saas-cluster
 # }
 
 __bot0x_awsrsta() {
-  eval "$(bot0x awsdr && __bot0x_awsp default-root && __bot0x_awsrmfaa staging && kubectx eks/staging-account-core-cluster)"
+  # Execute commands one by one
+  __bot0x_awsdr
+  __bot0x_awsp default-root
+  __bot0x_awsrmfaa staging
+  /usr/local/bin/kubectx eks/staging-account-core-cluster
 }
 
 # Create aliases to the functions
