@@ -5,7 +5,29 @@
   },
   "aws": {
     "default_region": "us-west-2",
-    "mfa_serial": "arn:aws:iam::434968058352:mfa/cli-ray"
+    "mfa_serial": "arn:aws:iam::${ACCOUNT_ID_A}:mfa/cli-ray",
+    "roles": {
+      "prod": {
+        "env": "production",
+        "arn": "arn:aws:iam::${ACCOUNT_ID_B}:role/admin-role"
+      },
+      "sb": {
+        "env": "sandbox",
+        "arn": "arn:aws:iam::${ACCOUNT_ID_C}:role/admin-role"
+      },
+      "staging": {
+        "env": "staging",
+        "arn": "arn:aws:iam::${ACCOUNT_ID_D}:role/admin-role"
+      },
+      "sec": {
+        "env": "security",
+        "arn": "arn:aws:iam::${ACCOUNT_ID_E}:role/admin-role"
+      },
+      "dev": {
+        "env": "dev",
+        "arn": "arn:aws:iam::${ACCOUNT_ID_F}:role/admin-role"
+      }
+    }
   },
   "argocd": {
     "namespace": "argocd"
