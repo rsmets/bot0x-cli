@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node bin/index.js",
-    "postinstall": "echo '' && node bin/install.cjs"
+    "postinstall": "node bin/index.js welcome"
   },
   "main": "bin/index.js",
   "type": "module",
