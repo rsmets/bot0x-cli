@@ -58,7 +58,7 @@ alias awsmfa='__bot0x_awsmfa'
 alias awsr='__bot0x_awsr'
 alias awsdra='__bot0x_awsr dev eks/dev-account-saas-cluster'
 alias awsrsta='__bot0x_awsr staging eks/staging-account-core-cluster'
-alias awsrsba='__bot0x_awsr sandbox eks/sandbox-account-saas-cluster'
+alias awsrsba='__bot0x_awsr sb eks/sandbox-account-saas-cluster'
 alias awsrpa='__bot0x_awsr prod eks/production-account-core-cluster'
 alias awsrseca='__bot0x_awsr sec'
 
