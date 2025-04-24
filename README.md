@@ -103,16 +103,27 @@ gitclean
 - Uses [commander](https://www.npmjs.com/package/commander) for CLI parsing
 - Uses [shelljs](https://www.npmjs.com/package/shelljs) for shell commands
 - Uses [chalk](https://www.npmjs.com/package/chalk) for colorful output
+- Uses [inquirer](https://www.npmjs.com/package/inquirer) for interactive prompts
 
 ### Project Structure
 
 ```
 bot0x/
 ├── bin/index.js         # CLI entry point
-├── lib/commands/
-│   ├── killbyport.js
-│   ├── gitclean.js
-│   └── flushdns.js
+├── bot0x.sh             # Shell script for environment-modifying commands
+├── lib/
+│   ├── commands/        # CLI commands
+│   │   ├── alias.js
+│   │   ├── gitclean.js
+│   │   ├── gitreset.js
+│   │   ├── killbyport.js
+│   │   ├── kubectlGet*.js
+│   │   ├── shellScript.js
+│   │   └── ... (30+ commands)
+│   └── utils/           # Shared utilities
+│       ├── config.js
+│       ├── logger.js
+│       └── secretStore.js
 ├── package.json
 └── README.md
 ```
