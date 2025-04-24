@@ -19,29 +19,13 @@ bot0x flushdns
 
 ## Installation
 
-From NPM:
+Run:
 ```sh
 npm install -g bot0x
 bot0x welcome
 ```
 
-For local development:
-```sh
-npm link
-```
-
-### Shell Alias Integration (Advanced)
-
-You can enable first-class shell aliases for all your `bot0x` commands — just like the original [github-copilot-cli][copilot-cli], which this project drew [inspiration][builder-blog] from — using the built-in `alias` command. 
-
-**To make aliases available in every shell session, add this line to your `.zshrc`, `.bashrc`, or similar shell profile:**
-
-```sh
-# Enable bot0x subcommands as top-level shell commands (e.g. 'kbp', 'gitclean', 'flushdns')
-eval "$(bot0x alias -- "$0")"
-```
-
-This will let you run `kbp 3000` or `gitclean` directly in your shell, as if they were standalone commands, while still using the single `bot0x` binary under the hood.
+Then follow the instructions in the welcome message.
 
 ### Shell Integration
 
@@ -72,9 +56,9 @@ This creates:
    - `awsrmfaa <role>` - Assume AWS MFA role automatically
    - `awsmfa <profile>` - Generate AWS MFA token
 
-2. Shell aliases for all other commands, including your new `ccio` command for opening CircleCI.
-
-> **Note**: The `alias` command automatically excludes commands that require `eval`, so there are no conflicts between the two.
+2. Shell aliases for all other commands:
+   - These aliases let you run commands like `kbp 3000` or `gitclean` directly in your shell
+   - **Note**: The `alias` command automatically excludes commands that require `eval`, so there are no conflicts between the two.
 
 #### Alternative: Save to a file
 
